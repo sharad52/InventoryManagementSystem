@@ -1,0 +1,76 @@
+    {% extends 'base.html' %}
+    {% block title %}
+        {{ context.title }}
+    {% endblock %}
+
+    {% block content %}
+    <!-- navbar starts from here -->
+    <div class="menu-bar">
+        <ul>
+            <li class="active"></i><a href="#"><i class="fa fa-tachometer"></i>Dashboard</a></li>
+            <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+            <li><a href="#"><i class="fa fa-globe"></i>Services</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="#">Hardware</a></li>
+                        <li><a href="#">Equipments</a></li>
+                        <li><a href="#">Paints</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="#"><i class="fa fa-usd"></i>Pricing</a></li>
+            <li><a href="{% url 'baseapp:add_assets' %}"><i class="fa fa-cog"></i>Add Assets</a></li>
+        </ul> 
+    </div>
+    <!-- nav bar ends here   -->
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-6">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header "><span class="badge badge-info">Products</span> <span class="badge badge-primary">Goods</span>
+                        <span class="badge badge-secondary">Recent trend</span>
+                        <span class="badge badge-success">Product Name</span>
+                        <span class="badge badge-danger">location</span>
+                        <span class="badge badge-warning">price</span></div>
+                    <div class="card-body">
+                        <p>Recent Products</p>
+                        <ul>
+                            {% for good in goods %}
+                            <li>{{good.name}}</li>
+                            <li>{{good.location}}</li>
+                            <li>{{good.price}}</li><br>
+                            <a href="{% url 'baseapp:edit_assets' good.id %}"><button class="btn btn-success">Edit</button></a>
+                            <a href="{% url 'baseapp:delete_assets' good.id %}"><button class="btn btn-danger">Delete</button></a>
+                                
+                            
+                            {% endfor %}
+                        </ul>
+                        
+                    </div>
+
+                </div>
+                
+                
+
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12">
+                <div class="card " style="width: 18rem;">
+                    <div class="card-header text-white bg-primary mb-3">Most selling Products</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>{{context.name}}</li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    {% endblock %}
+    
+
+   
